@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<head>
+    <title>Menu</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+
+        body{
+            display: flex;
+            height: 100vh;
+        }
+
+        .container{
+            margin: auto;
+            height: 75px;
+            width: 70px;
+            cursor: pointer;
+        }
+
+        .lines{
+            margin: 15px 10px;
+            height: 5px;
+            width: 50px;
+            background-color: black;
+            border-radius: 5px;
+            animation-duration: 0.2s;
+            animation-timing-function: ease;
+            animation-delay: 0s;
+            animation-iteration-count: 1;
+            animation-direction: normal;
+            animation-fill-mode: forwards;
+        }
+
+        /* ---------------------- Forward Animation ---------------------- */
+        
+        .top{
+            animation-name: top;
+        }
+
+        .center{
+            animation-name: center;
+        }
+
+        .bottom{
+            animation-name: bottom;
+        }
+
+        @keyframes top{
+            0%{
+                transform: rotateZ(0deg);
+            }
+            100%{
+                transform: rotateZ(-45deg) translate(-5px, 5px);
+                width: 40px;
+            }
+        }
+        
+        @keyframes center{
+            0%{
+                transform: translateX(0px);
+            }
+            100%{
+                transform: translateX(10px);
+                width: 0;
+            }
+        }
+
+        @keyframes bottom{
+            0%{
+                transform: rotateZ(0deg);
+            }
+            100%{
+                transform: rotateZ(40deg) translate(-5px,-7px);
+                width: 40px;
+            }
+        }  
+
+        /* ---------------------- Reverse Animation ---------------------- */
+        
+        .reverse-top{
+            animation-name: reverse-top;
+        }
+
+        .reverse-center{
+            animation-name: reverse-center;
+        }
+
+        .reverse-bottom{
+            animation-name: reverse-bottom;
+        }
+
+        @keyframes reverse-top{
+            100%{
+                transform: rotateZ(0deg);
+            }
+            0%{
+                transform: rotateZ(-45deg) translate(-5px, 5px);
+                width: 40px;
+            }
+        }
+        
+        @keyframes reverse-center{
+            100%{
+                transform: translateX(0px);
+            }
+            0%{
+                transform: translateX(10px);
+                width: 0;
+            }
+        }
+
+        @keyframes reverse-bottom{
+            100%{
+                transform: rotateZ(0deg);
+            }
+            0%{
+                transform: rotateZ(40deg) translate(-5px,-7px);
+                width: 40px;
+            }
+        }  
+    </style>
+</head>
+
+<body>
+    <div class="container" onclick="animation()">
+        <div class="lines" id="top"></div>
+        <div class="lines" id="center"></div>
+        <div class="lines" id="bottom"></div>
+    </div>
+</body>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+
+<script>
+    var container = document.getElementsByClassName("container")[0];
+
+    function animation(){
+        if(container.classList.length == 1){
+            $("#top").addClass("top");
+            $("#center").addClass("center");
+            $("#bottom").addClass("bottom");
+            $("#top").removeClass("reverse-top");
+            $("#center").removeClass("reverse-center");
+            $("#bottom").removeClass("reverse-bottom");
+            $(".container").addClass("active");
+        }  
+        else if(container.classList.length == 2){
+            $("#top").removeClass("top");
+            $("#center").removeClass("center");
+            $("#bottom").removeClass("bottom");
+            $("#top").addClass("reverse-top");
+            $("#center").addClass("reverse-center");
+            $("#bottom").addClass("reverse-bottom");
+            $(".container").removeClass("active");
+        }
+    }
+</script>
+</html>
